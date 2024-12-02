@@ -1,5 +1,6 @@
 require('dotenv').config();
 let mongoose=require("mongoose");
+const person = require('./src/models/person');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const Schema = mongoose.Schema;
@@ -47,7 +48,11 @@ const findOneByFood = (food, done) => {
 };
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById({_id:personId},function(err,match){
+    if(err)console.log(err);
+    done(null,match);
+  });
+ // done(null /*, data*/);
 };
 
 const findEditThenSave = (personId, done) => {
