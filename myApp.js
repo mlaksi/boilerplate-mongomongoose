@@ -15,7 +15,7 @@ console.log(Person);
 const createAndSavePerson = (done) => {
   const person=new Person({name:"Mladenka",age:26,favoriteFoods:["apples","cheeseburgers"]});
   console.log(person);
-  done(null, person.save(function(err,data){
+  person.save(function(err,data){
     if (err) return console.error(err);
     done(null, data)
   }));
