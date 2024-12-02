@@ -48,7 +48,7 @@ const findOneByFood = (food, done) => {
 };
 
 const findPersonById = (personId, done) => {
-  Person.findById({_id:personId},function(err,match){
+  Person.findById(personId,function(err,match){
     if(err)console.log(err);
     done(null,match);
   });
