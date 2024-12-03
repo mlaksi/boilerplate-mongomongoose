@@ -69,7 +69,7 @@ const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
   // Correct method: Changed from findPersonById to findById
-  Person.findById(personId, (err, person) => {
+  Person.findPersonById(personId, (err, person) => {
     if (err) {
       console.error(err); // Improved logging
       return done(err); // Added: Proper error handling with return to stop execution
