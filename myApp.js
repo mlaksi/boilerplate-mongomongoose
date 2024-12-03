@@ -110,7 +110,7 @@ const removeManyPeople = (done) => {
     if(err)console.log(err);
     done(null,outcome);
   })
-  done(null /*, data*/);
+  //done(null /*, data*/);
 };
 
 const queryChain = (done) => {
