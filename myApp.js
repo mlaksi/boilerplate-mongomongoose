@@ -55,10 +55,26 @@ const findPersonById = (personId, done) => {
   //done(null /*, data*/);
 };
 
+
+// Mongoose has a dedicated updating method: Model.update(). 
+
+
+// Modify the findEditThenSave function 
+// to find a person by _id (use any of the above methods) with the parameter personId as search key. 
+// Add "hamburger" to the list of the person's favoriteFoods (you can use Array.push()). 
+// Then - inside the find callback - save() the updated Person.
+
+
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
+  Person.findPersonById(personId,function(err,data){
+    if(err)console.log(err);
+    done(null,data);
+  }).favoriteFoods.push(foodToAdd).save();
 
-  done(null /*, data*/);
+  //const person=findPersonById(personId);
+  //person.favoriteFoods.push(foodToAdd);
+  //done(null /*, data*/);
 };
 
 const findAndUpdate = (personName, done) => {
