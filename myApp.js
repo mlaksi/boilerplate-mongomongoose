@@ -67,20 +67,28 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  const person=Person.findPersonById(personId,function(err,data){
-    if(err)console.log(err);
-    data.favoriteFoods.push(foodToAdd);
-    data.save();
-    done(null,data);
+
+  // Correct method: Changed from findPersonById to findById
+  Person.findById(personId, (err, person) => {
+    if (err) {
+      console.error(err); // Improved logging
+      return done(err); // Added: Proper error handling with return to stop execution
+    }
+
+    person.favoriteFoods.push(foodToAdd); // Updated: Clearer variable name used (person instead of data)
+
+    // Added: Save with callback to handle errors during the save operation
+    person.save((err, updatedPerson) => {
+      if (err) {
+        console.error(err); // Added: Log save errors
+        return done(err); // Added: Handle save errors
+      }
+
+      // Call done with the updated person
+      done(null, updatedPerson);
+    });
   });
-
-
-
-  //const person=findPersonById(personId);
-  //person.favoriteFoods.push(foodToAdd);
-  //done(null /*, data*/);
 };
-
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
