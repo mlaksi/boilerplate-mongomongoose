@@ -90,7 +90,10 @@ const findAndUpdate = (personName, done) => {
     if(err)console.log(err);
     foundPerson.age=20;
     done(null,foundPerson);
-  },{new:true});
+  },{new:true},function(err,updatedPerson){
+    if (err)console.log(err);
+    done(null,updatedPerson);
+  });
 
   //done(null /*, data*/);
 };
