@@ -9,7 +9,7 @@ const personSchema = new Schema({
   age: Number,
   favoriteFoods: [String]
 });
-let Person = mongoose.model("Person", personSchema);
+let Person = mongoose.models.Person||mongoose.model("Person", personSchema);
 
 console.log(Person);
 
